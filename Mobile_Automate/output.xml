@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.4 on win32)" generated="2024-12-10T10:44:37.378520" rpa="false" schemaversion="5">
+<suite id="s1" name="Testcase Assignment" source="C:\Users\Sirot.t\Documents\new-joiner\Mobile_Automate\testcases\testcase_assignment.robot">
+<test id="s1-t1" name="TC01 -- Open application add product to cart and validate detail" line="5">
+<kw name="Open Application" owner="AppiumLibrary">
+<arg>&amp;{mobile_and_app_setting}</arg>
+<doc>Opens a new application to given Appium server.
+Capabilities of appium server, Android and iOS,
+Please check https://appium.io/docs/en/2.1/cli/args/
+| *Option*            | *Man.* | *Description*     |
+| remote_url          | Yes    | Appium server url |
+| alias               | no     | alias             |
+| strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
+<status status="PASS" start="2024-12-10T10:44:37.592895" elapsed="9.524536"/>
+</kw>
+<kw name="Tap product" owner="catalog_page">
+<kw name="Replace String" owner="String">
+<msg time="2024-12-10T10:44:47.119433" level="INFO">${to_replace_product} = xpath=//android.widget.TextView[@content-desc="store item text" and @text="Sauce Labs Backpack"]</msg>
+<var>${to_replace_product}</var>
+<arg>${catalog_locator.product_image}</arg>
+<arg>PRODUCT_NAME</arg>
+<arg>${product}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2024-12-10T10:44:47.118434" elapsed="0.000999"/>
+</kw>
+<kw name="Tap when element is visible" owner="common">
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:48.393571" level="INFO">xpath criteria: //android.widget.TextView[@content-desc="store item text" and @text="Sauce Labs Backpack"]</msg>
+<arg>${to_wait_and_click_element}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" start="2024-12-10T10:44:47.119433" elapsed="1.274138"/>
+</kw>
+<kw name="Click Element" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:48.394571" level="INFO">Clicking element 'xpath=//android.widget.TextView[@content-desc="store item text" and @text="Sauce Labs Backpack"]'.</msg>
+<msg time="2024-12-10T10:44:48.522508" level="INFO">xpath criteria: //android.widget.TextView[@content-desc="store item text" and @text="Sauce Labs Backpack"]</msg>
+<arg>${to_wait_and_click_element}</arg>
+<doc>Click element identified by `locator`.</doc>
+<status status="PASS" start="2024-12-10T10:44:48.393571" elapsed="0.129942"/>
+</kw>
+<arg>${to_replace_product}</arg>
+<status status="PASS" start="2024-12-10T10:44:47.119433" elapsed="1.404080"/>
+</kw>
+<arg>${catalog_data.target_product}</arg>
+<status status="PASS" start="2024-12-10T10:44:47.117431" elapsed="1.406082"/>
+</kw>
+<kw name="Tap add to cart button" owner="product_detail_page">
+<kw name="Tap when element is visible" owner="common">
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<arg>${to_wait_and_click_element}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" start="2024-12-10T10:44:48.524537" elapsed="1.475992"/>
+</kw>
+<kw name="Click Element" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:50.002529" level="INFO">Clicking element 'accessibility_id=Add To Cart button'.</msg>
+<arg>${to_wait_and_click_element}</arg>
+<doc>Click element identified by `locator`.</doc>
+<status status="PASS" start="2024-12-10T10:44:50.000529" elapsed="0.126323"/>
+</kw>
+<arg>${product_detail_locator.add_to_cart_button}</arg>
+<status status="PASS" start="2024-12-10T10:44:48.523513" elapsed="1.603339"/>
+</kw>
+<status status="PASS" start="2024-12-10T10:44:48.523513" elapsed="1.603339"/>
+</kw>
+<kw name="Tap cart icon" owner="navbar_page">
+<kw name="Tap when element is visible" owner="common">
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:50.829705" level="INFO">xpath criteria: //android.view.ViewGroup[@content-desc="cart badge"]/android.widget.ImageView</msg>
+<arg>${to_wait_and_click_element}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" start="2024-12-10T10:44:50.127860" elapsed="0.701845"/>
+</kw>
+<kw name="Click Element" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:50.831022" level="INFO">Clicking element 'xpath=//android.view.ViewGroup[@content-desc="cart badge"]/android.widget.ImageView'.</msg>
+<msg time="2024-12-10T10:44:50.942544" level="INFO">xpath criteria: //android.view.ViewGroup[@content-desc="cart badge"]/android.widget.ImageView</msg>
+<arg>${to_wait_and_click_element}</arg>
+<doc>Click element identified by `locator`.</doc>
+<status status="PASS" start="2024-12-10T10:44:50.829705" elapsed="0.112839"/>
+</kw>
+<arg>${navbar_locator.cart_icon}</arg>
+<status status="PASS" start="2024-12-10T10:44:50.126852" elapsed="0.815692"/>
+</kw>
+<status status="PASS" start="2024-12-10T10:44:50.126852" elapsed="0.815692"/>
+</kw>
+<kw name="Check Product Row Should Be Equal" owner="my_cart_feature">
+<kw name="Get Count Product Row" owner="cart_detail_page">
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:51.656507" level="INFO">xpath criteria: //android.view.ViewGroup[@content-desc="product row"]
+xpath criteria: //android.view.ViewGroup[@content-desc="product row"]</msg>
+<arg>${my_cart_product}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" start="2024-12-10T10:44:50.944553" elapsed="0.712493"/>
+</kw>
+<kw name="Get Webelements" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:51.746739" level="INFO">xpath criteria: //android.view.ViewGroup[@content-desc="product row"]</msg>
+<msg time="2024-12-10T10:44:51.746739" level="INFO">@{product_rows} = [ &lt;appium.webdriver.webelement.WebElement (session="1a528335-b693-40d4-95ad-81442aabc75c", element="00000000-0000-008f-ffff-ffff000000f4")&gt; ]</msg>
+<var>@{product_rows}</var>
+<arg>${my_cart_product}</arg>
+<doc>Returns list of [http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.remote.webelement|WebElement] objects matching ``locator``.</doc>
+<status status="PASS" start="2024-12-10T10:44:51.657046" elapsed="0.089693"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2024-12-10T10:44:51.746739" level="INFO">Length is 1.</msg>
+<msg time="2024-12-10T10:44:51.746739" level="INFO">${product_row_amount} = 1</msg>
+<var>${product_row_amount}</var>
+<arg>${product_rows}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2024-12-10T10:44:51.746739" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${product_row_amount}</value>
+<status status="PASS" start="2024-12-10T10:44:51.746739" elapsed="0.000000"/>
+</return>
+<msg time="2024-12-10T10:44:51.746739" level="INFO">${product_row_amount} = 1</msg>
+<var>${product_row_amount}</var>
+<status status="PASS" start="2024-12-10T10:44:50.944553" elapsed="0.802186"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${product_row_amount}</arg>
+<arg>${expected_amount}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2024-12-10T10:44:51.747692" elapsed="0.000000"/>
+</kw>
+<arg>${cart_detail_data.expected_product_amount}</arg>
+<status status="PASS" start="2024-12-10T10:44:50.943543" elapsed="0.804149"/>
+</kw>
+<kw name="Check Product Amount Should Be Equal" owner="my_cart_feature">
+<kw name="Get Product Amount" owner="cart_detail_page">
+<kw name="Replace String" owner="String">
+<msg time="2024-12-10T10:44:51.748696" level="INFO">${final_locator} = xpath=//android.widget.TextView[@content-desc="product label" and @text="Sauce Labs Backpack"]/following-sibling::android.view.ViewGroup[@content-desc="counter amount"]/android.widget.TextView</msg>
+<var>${final_locator}</var>
+<arg>${target_product_amount"&lt;&lt;product&gt;&gt;"}</arg>
+<arg>&lt;&lt;product&gt;&gt;</arg>
+<arg>${product_name}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2024-12-10T10:44:51.748696" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:51.815280" level="INFO">xpath criteria: //android.widget.TextView[@content-desc="product label" and @text="Sauce Labs Backpack"]/following-sibling::android.view.ViewGroup[@content-desc="counter amount"]/android.widget.TextView</msg>
+<arg>${final_locator}</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" start="2024-12-10T10:44:51.748696" elapsed="0.066584"/>
+</kw>
+<kw name="Get Text" owner="AppiumLibrary">
+<msg time="2024-12-10T10:44:51.886513" level="INFO">Element 'xpath=//android.widget.TextView[@content-desc="product label" and @text="Sauce Labs Backpack"]/following-sibling::android.view.ViewGroup[@content-desc="counter amount"]/android.widget.TextView' text is '1' </msg>
+<msg time="2024-12-10T10:44:51.886513" level="INFO">xpath criteria: //android.widget.TextView[@content-desc="product label" and @text="Sauce Labs Backpack"]/following-sibling::android.view.ViewGroup[@content-desc="counter amount"]/android.widget.TextView</msg>
+<msg time="2024-12-10T10:44:51.886513" level="INFO">${amount} = 1</msg>
+<var>${amount}</var>
+<arg>${final_locator}</arg>
+<doc>Get element text (for hybrid and mobile browser use `xpath` locator, others might cause problem)</doc>
+<status status="PASS" start="2024-12-10T10:44:51.815280" elapsed="0.071233"/>
+</kw>
+<return>
+<value>${amount}</value>
+<status status="PASS" start="2024-12-10T10:44:51.886513" elapsed="0.000000"/>
+</return>
+<msg time="2024-12-10T10:44:51.886513" level="INFO">${product_amount} = 1</msg>
+<var>${product_amount}</var>
+<arg>${product_name}</arg>
+<status status="PASS" start="2024-12-10T10:44:51.748696" elapsed="0.137817"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2024-12-10T10:44:51.887517" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<arg>${product_amount}</arg>
+<arg>${expected_amount}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2024-12-10T10:44:51.887517" elapsed="0.000000"/>
+</kw>
+<arg>${cart_detail_data.expect_target_product}</arg>
+<arg>${cart_detail_data.expected_product_amount}</arg>
+<status status="PASS" start="2024-12-10T10:44:51.747692" elapsed="0.139825"/>
+</kw>
+<status status="PASS" start="2024-12-10T10:44:37.592895" elapsed="14.294622"/>
+</test>
+<status status="PASS" start="2024-12-10T10:44:37.379946" elapsed="14.508243"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Testcase Assignment">Testcase Assignment</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

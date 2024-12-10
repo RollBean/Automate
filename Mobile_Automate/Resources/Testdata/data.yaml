@@ -1,0 +1,7 @@
+catalog_data:
+  target_product: "Sauce Labs Backpack"
+
+cart_detail_data:
+  expected_product_amount: 1
+  expect_target_product: "Sauce Labs Backpack"
+  expect_amount_of_target_product:  1

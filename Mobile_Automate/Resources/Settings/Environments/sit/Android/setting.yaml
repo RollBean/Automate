@@ -1,0 +1,7 @@
+mobile_and_app_setting: 
+  remote_url:              http://localhost:4723/wd/hub
+  deviceName:              "Test_Device"
+  platformVersion:         "15.0"
+  platformName:            "Android"
+  appPackage:              "com.saucelabs.mydemoapp.android"
+  appActivity:             "com.saucelabs.mydemoapp.android.view.activities.SplashActivity"
