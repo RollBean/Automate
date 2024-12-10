@@ -1,0 +1,19 @@
+login:
+  username: doppio
+  password: weBuildBestQa
+  invalid_username: doppio222
+  url: http://localhost:8082
+  path: /login
+  status_success: success
+  status_fail: error
+  status_code_fail: '401'
+  status_code_success: '200'
+
+asset:
+  path: /assets
+  asset_id: a99c
+  asset_name: Macpro1
+  asset_type: '1'
+  in_use: true
+  status: success
+  asset_name_update: Macpro m1
