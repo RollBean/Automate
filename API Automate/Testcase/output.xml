@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.4 on win32)" generated="2024-12-10T12:03:02.346058" rpa="false" schemaversion="5">
+<suite id="s1" name="Testcase" source="C:\Users\Sirot.t\Documents\new-joiner\API_Assignment\Robot_API_Assignment\testcase\testcase.robot">
+<test id="s1-t1" name="Verify login with invalid username" line="5">
+<kw name="Post login by api and return token" owner="common">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.725926" level="INFO">Creating Session using : alias=LoginSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>LoginSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.725926" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.725926" level="INFO">${request_body} = {'username': 'doppio222', 'password': 'weBuildBestQa'}</msg>
+<var>${request_body}</var>
+<arg>username=${username}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.725926" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.746552" level="INFO">POST Request : url=http://localhost:8082/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '54', 'Content-Type': 'application/json'} 
+ body=b'{"username": "doppio222", "password": "weBuildBestQa"}' 
+ </msg>
+<msg time="2024-12-10T12:03:02.746552" level="INFO">POST Response : url=http://localhost:8082/login 
+ status=401, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body={"status":"error","message":"invalid username or password"} 
+ </msg>
+<msg time="2024-12-10T12:03:02.746942" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>LoginSession</arg>
+<arg>${path}</arg>
+<arg>json=${request_body}</arg>
+<arg>expected_status=${expected_status_code}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.725926" elapsed="0.021016"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>${response_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.747066" elapsed="0.000387"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.748233" level="INFO">${token} = invalid username or password</msg>
+<var>${token}</var>
+<arg>${response.json()['message']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.747453" elapsed="0.000780"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.748233" level="INFO">${token} = invalid username or password</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.748233" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2024-12-10T12:03:02.748233" elapsed="0.000000"/>
+</return>
+<arg>${login.invalid_username}</arg>
+<arg>${login.password}</arg>
+<arg>${login.url}</arg>
+<arg>${login.path}</arg>
+<arg>${login.status_code_fail}</arg>
+<arg>${login.status_fail}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.716915" elapsed="0.031318"/>
+</kw>
+<status status="PASS" start="2024-12-10T12:03:02.716915" elapsed="0.032473"/>
+</test>
+<test id="s1-t2" name="Verify create new asset success" line="9">
+<kw name="Post login by api and return token" owner="common">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.752291" level="INFO">Creating Session using : alias=LoginSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>LoginSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.752291" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.752291" level="INFO">${request_body} = {'username': 'doppio', 'password': 'weBuildBestQa'}</msg>
+<var>${request_body}</var>
+<arg>username=${username}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.752291" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.756886" level="INFO">POST Request : url=http://localhost:8082/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '51', 'Content-Type': 'application/json'} 
+ body=b'{"username": "doppio", "password": "weBuildBestQa"}' 
+ </msg>
+<msg time="2024-12-10T12:03:02.756886" level="INFO">POST Response : url=http://localhost:8082/login 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body={"status":"success","message":"y1snEvtyKVeSFZXSW0Kisvrene9DFT2W"} 
+ </msg>
+<msg time="2024-12-10T12:03:02.756886" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>LoginSession</arg>
+<arg>${path}</arg>
+<arg>json=${request_body}</arg>
+<arg>expected_status=${expected_status_code}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.752291" elapsed="0.004595"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>${response_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.756886" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.758356" level="INFO">${token} = y1snEvtyKVeSFZXSW0Kisvrene9DFT2W</msg>
+<var>${token}</var>
+<arg>${response.json()['message']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.756886" elapsed="0.001470"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.758356" level="INFO">${token} = y1snEvtyKVeSFZXSW0Kisvrene9DFT2W</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.758356" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2024-12-10T12:03:02.758356" elapsed="0.000000"/>
+</return>
+<arg>${login.username}</arg>
+<arg>${login.password}</arg>
+<arg>${login.url}</arg>
+<arg>${login.path}</arg>
+<arg>${login.status_code_success}</arg>
+<arg>${login.status_success}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.750397" elapsed="0.007959"/>
+</kw>
+<kw name="Post create asset and return response body" owner="create_asset_page">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.759647" level="INFO">${header} = {'token': 'y1snEvtyKVeSFZXSW0Kisvrene9DFT2W'}</msg>
+<var>${header}</var>
+<arg>token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.759647" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.760480" level="INFO">Creating Session using : alias=AssetSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>AssetSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.759647" elapsed="0.000833"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.760480" level="INFO">${request_body} = {'assetId': 'a99c', 'assetName': 'Macpro1', 'assetType': '1', 'inUse': True}</msg>
+<var>${request_body}</var>
+<arg>assetId=${asset_id}</arg>
+<arg>assetName=${asset_name}</arg>
+<arg>assetType=${asset_type}</arg>
+<arg>inUse=${in_use}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.760480" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.766167" level="INFO">POST Request : url=http://localhost:8082/assets 
+ path_url=/assets 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'token': 'y1snEvtyKVeSFZXSW0Kisvrene9DFT2W', 'Content-Length': '76', 'Content-Type': 'application/json'} 
+ body=b'{"assetId": "a99c", "assetName": "Macpro1", "assetType": "1", "inUse": true}' 
+ </msg>
+<msg time="2024-12-10T12:03:02.766167" level="INFO">POST Response : url=http://localhost:8082/assets 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body={"status":"success","message":""} 
+ </msg>
+<msg time="2024-12-10T12:03:02.766167" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>AssetSession</arg>
+<arg>${path}</arg>
+<arg>headers=${header}</arg>
+<arg>json=${request_body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.760480" elapsed="0.005687"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>${response_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.766167" elapsed="0.001118"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.767285" level="INFO">${request_asset} = {'assetId': 'a99c', 'assetName': 'Macpro1', 'assetType': '1', 'inUse': True}</msg>
+<var>${request_asset}</var>
+<arg>${request_body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.767285" elapsed="0.000000"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.767285" level="INFO">${request_asset} = {'assetId': 'a99c', 'assetName': 'Macpro1', 'assetType': '1', 'inUse': True}</msg>
+<arg>${request_asset}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.767285" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2024-12-10T12:03:02.767285" elapsed="0.000000"/>
+</return>
+<arg>${login.url}</arg>
+<arg>${asset.path}</arg>
+<arg>${asset.asset_id}</arg>
+<arg>${asset.asset_name}</arg>
+<arg>${asset.asset_type}</arg>
+<arg>${asset.in_use}</arg>
+<arg>${asset.status}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.759109" elapsed="0.009416"/>
+</kw>
+<kw name="Get asset that created asset" owner="get_asset_page">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.769188" level="INFO">${header} = {'token': 'y1snEvtyKVeSFZXSW0Kisvrene9DFT2W'}</msg>
+<var>${header}</var>
+<arg>token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.769188" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.769188" level="INFO">Creating Session using : alias=GetAssetSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>GetAssetSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.769188" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.773269" level="INFO">GET Request : url=http://localhost:8082/assets 
+ path_url=/assets 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'token': 'y1snEvtyKVeSFZXSW0Kisvrene9DFT2W'} 
+ body=None 
+ </msg>
+<msg time="2024-12-10T12:03:02.773269" level="INFO">GET Response : url=http://localhost:8082/assets 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=[{"assetId":"a001","assetName":"Macbook Pro","assetType":1,"inUse":true},{"assetId":"a002","assetName":"Lenovo B112","assetType":2,"inUse":true},{"assetId":"a003","assetName":"Apple Iphone 11","assetType":3,"inUse":true},{"assetId":"a004","assetName":"Macbook Air","assetType":1,"inUse":true},{"assetId":"a005","assetName":"Xiaomi Mi6","assetType":4,"inUse":true},{"assetId":"a011","assetName":"Aoppee phone","assetType":1,"inUse":true},{"assetId":"a012","assetName":"Aoppee phone","assetType":1,"inUse":true},{"assetId":"a99c","assetName":"Macpro1","assetType":1,"inUse":true}] 
+ </msg>
+<msg time="2024-12-10T12:03:02.773269" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>GetAssetSession</arg>
+<arg>/${path}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.770413" elapsed="0.002856"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.773269" level="INFO">${get_assets} = &lt;Response [200]&gt;</msg>
+<arg>${get_assets}</arg>
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.773269" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2024-12-10T12:03:02.773269" elapsed="0.000000"/>
+</return>
+<arg>${login.url}</arg>
+<arg>${asset.path}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.769068" elapsed="0.005700"/>
+</kw>
+<kw name="Verify asset that created asset" owner="get_asset_page">
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${get_assets.json()[-1]['assetId']}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.774768" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${asset_name}</arg>
+<arg>${get_assets.json()[-1]['assetName']}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.774768" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.774768" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<arg>${asset_type}</arg>
+<arg>${get_assets.json()[-1]['assetType']}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.774768" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${in_use}</arg>
+<arg>${get_assets.json()[-1]['inUse']}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.774768" elapsed="0.000000"/>
+</kw>
+<arg>${request_asset.assetId}</arg>
+<arg>${request_asset.assetName}</arg>
+<arg>${request_asset.assetType}</arg>
+<arg>${request_asset.inUse}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.774768" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-12-10T12:03:02.749388" elapsed="0.025380"/>
+</test>
+<test id="s1-t3" name="Verify update data new asset" line="17">
+<kw name="Post login by api and return token" owner="common">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.779372" level="INFO">Creating Session using : alias=LoginSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>LoginSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.779372" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.779372" level="INFO">${request_body} = {'username': 'doppio', 'password': 'weBuildBestQa'}</msg>
+<var>${request_body}</var>
+<arg>username=${username}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.779372" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.784556" level="INFO">POST Request : url=http://localhost:8082/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '51', 'Content-Type': 'application/json'} 
+ body=b'{"username": "doppio", "password": "weBuildBestQa"}' 
+ </msg>
+<msg time="2024-12-10T12:03:02.784556" level="INFO">POST Response : url=http://localhost:8082/login 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body={"status":"success","message":"M9tx8_vBXgeAyBo0x2v_uM2hg1dVWkSw"} 
+ </msg>
+<msg time="2024-12-10T12:03:02.784556" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>LoginSession</arg>
+<arg>${path}</arg>
+<arg>json=${request_body}</arg>
+<arg>expected_status=${expected_status_code}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.779372" elapsed="0.005184"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>${response_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.785064" elapsed="0.000729"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.785793" level="INFO">${token} = M9tx8_vBXgeAyBo0x2v_uM2hg1dVWkSw</msg>
+<var>${token}</var>
+<arg>${response.json()['message']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.000000"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.785793" level="INFO">${token} = M9tx8_vBXgeAyBo0x2v_uM2hg1dVWkSw</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.000000"/>
+</return>
+<arg>${login.username}</arg>
+<arg>${login.password}</arg>
+<arg>${login.url}</arg>
+<arg>${login.path}</arg>
+<arg>${login.status_code_success}</arg>
+<arg>${login.status_success}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.774768" elapsed="0.011025"/>
+</kw>
+<kw name="Put asset and return response body" owner="update_asset_page">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.785793" level="INFO">${header} = {'token': 'M9tx8_vBXgeAyBo0x2v_uM2hg1dVWkSw'}</msg>
+<var>${header}</var>
+<arg>token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.785793" level="INFO">Creating Session using : alias=UpdateAssetSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>UpdateAssetSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.785793" level="INFO">${request_body} = {'assetId': 'a99c', 'assetName': 'Macpro m1', 'assetType': '1', 'inUse': True}</msg>
+<var>${request_body}</var>
+<arg>assetId=${asset_id}</arg>
+<arg>assetName=${asset_name}</arg>
+<arg>assetType=${asset_type}</arg>
+<arg>inUse=${in_use}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.000000"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.794501" level="INFO">PUT Request : url=http://localhost:8082/assets 
+ path_url=/assets 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'token': 'M9tx8_vBXgeAyBo0x2v_uM2hg1dVWkSw', 'Content-Length': '78', 'Content-Type': 'application/json'} 
+ body=b'{"assetId": "a99c", "assetName": "Macpro m1", "assetType": "1", "inUse": true}' 
+ </msg>
+<msg time="2024-12-10T12:03:02.794501" level="INFO">PUT Response : url=http://localhost:8082/assets 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body={"status":"success","message":"remark: asset id will not be changed in any cases"} 
+ </msg>
+<msg time="2024-12-10T12:03:02.795517" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>UpdateAssetSession</arg>
+<arg>/${path}</arg>
+<arg>headers=${header}</arg>
+<arg>json=${request_body}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.009724"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>${response_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.795517" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.795517" level="INFO">${update_asset} = {'assetId': 'a99c', 'assetName': 'Macpro m1', 'assetType': '1', 'inUse': True}</msg>
+<var>${update_asset}</var>
+<arg>${request_body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.795517" elapsed="0.000000"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.795517" level="INFO">${update_asset} = {'assetId': 'a99c', 'assetName': 'Macpro m1', 'assetType': '1', 'inUse': True}</msg>
+<arg>${update_asset}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.795517" elapsed="0.000992"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2024-12-10T12:03:02.796509" elapsed="0.000000"/>
+</return>
+<arg>${login.url}</arg>
+<arg>${asset.path}</arg>
+<arg>${asset.asset_id}</arg>
+<arg>${asset.asset_name_update}</arg>
+<arg>${asset.asset_type}</arg>
+<arg>${asset.in_use}</arg>
+<arg>${asset.status}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.785793" elapsed="0.010716"/>
+</kw>
+<kw name="Get asset that created asset" owner="get_asset_page">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.797509" level="INFO">${header} = {'token': 'M9tx8_vBXgeAyBo0x2v_uM2hg1dVWkSw'}</msg>
+<var>${header}</var>
+<arg>token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.797509" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.797509" level="INFO">Creating Session using : alias=GetAssetSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>GetAssetSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.797509" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.800945" level="INFO">GET Request : url=http://localhost:8082/assets 
+ path_url=/assets 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'token': 'M9tx8_vBXgeAyBo0x2v_uM2hg1dVWkSw'} 
+ body=None 
+ </msg>
+<msg time="2024-12-10T12:03:02.800945" level="INFO">GET Response : url=http://localhost:8082/assets 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=[{"assetId":"a001","assetName":"Macbook Pro","assetType":1,"inUse":true},{"assetId":"a002","assetName":"Lenovo B112","assetType":2,"inUse":true},{"assetId":"a003","assetName":"Apple Iphone 11","assetType":3,"inUse":true},{"assetId":"a004","assetName":"Macbook Air","assetType":1,"inUse":true},{"assetId":"a005","assetName":"Xiaomi Mi6","assetType":4,"inUse":true},{"assetId":"a011","assetName":"Aoppee phone","assetType":1,"inUse":true},{"assetId":"a012","assetName":"Aoppee phone","assetType":1,"inUse":true},{"assetId":"a99c","assetName":"Macpro m1","assetType":1,"inUse":true}] 
+ </msg>
+<msg time="2024-12-10T12:03:02.800945" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>GetAssetSession</arg>
+<arg>/${path}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.797509" elapsed="0.003436"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.802446" level="INFO">${get_assets} = &lt;Response [200]&gt;</msg>
+<arg>${get_assets}</arg>
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.802096" elapsed="0.000350"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2024-12-10T12:03:02.802446" elapsed="0.000000"/>
+</return>
+<arg>${login.url}</arg>
+<arg>${asset.path}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.796509" elapsed="0.006146"/>
+</kw>
+<kw name="Verify asset that created asset" owner="get_asset_page">
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${get_assets.json()[-1]['assetId']}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.803844" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${asset_name}</arg>
+<arg>${get_assets.json()[-1]['assetName']}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.803844" elapsed="0.001057"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.804901" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<arg>${asset_type}</arg>
+<arg>${get_assets.json()[-1]['assetType']}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.804901" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${in_use}</arg>
+<arg>${get_assets.json()[-1]['inUse']}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.804901" elapsed="0.000000"/>
+</kw>
+<arg>${update_asset.assetId}</arg>
+<arg>${update_asset.assetName}</arg>
+<arg>${update_asset.assetType}</arg>
+<arg>${update_asset.inUse}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.802655" elapsed="0.002246"/>
+</kw>
+<status status="PASS" start="2024-12-10T12:03:02.774768" elapsed="0.031132"/>
+</test>
+<test id="s1-t4" name="Verify delete data new asset" line="25">
+<kw name="Post login by api and return token" owner="common">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.808039" level="INFO">Creating Session using : alias=LoginSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>LoginSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.807874" elapsed="0.000165"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.808039" level="INFO">${request_body} = {'username': 'doppio', 'password': 'weBuildBestQa'}</msg>
+<var>${request_body}</var>
+<arg>username=${username}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.808039" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.812040" level="INFO">POST Request : url=http://localhost:8082/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '51', 'Content-Type': 'application/json'} 
+ body=b'{"username": "doppio", "password": "weBuildBestQa"}' 
+ </msg>
+<msg time="2024-12-10T12:03:02.812040" level="INFO">POST Response : url=http://localhost:8082/login 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body={"status":"success","message":"kkoaVtokodWhO-FoT6fawvumJpIWrG0Y"} 
+ </msg>
+<msg time="2024-12-10T12:03:02.812040" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>LoginSession</arg>
+<arg>${path}</arg>
+<arg>json=${request_body}</arg>
+<arg>expected_status=${expected_status_code}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.808039" elapsed="0.004001"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>${response_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.812040" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.813039" level="INFO">${token} = kkoaVtokodWhO-FoT6fawvumJpIWrG0Y</msg>
+<var>${token}</var>
+<arg>${response.json()['message']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.813039" elapsed="0.000000"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.813039" level="INFO">${token} = kkoaVtokodWhO-FoT6fawvumJpIWrG0Y</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.813039" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${token}</value>
+<status status="PASS" start="2024-12-10T12:03:02.813039" elapsed="0.000000"/>
+</return>
+<arg>${login.username}</arg>
+<arg>${login.password}</arg>
+<arg>${login.url}</arg>
+<arg>${login.path}</arg>
+<arg>${login.status_code_success}</arg>
+<arg>${login.status_success}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.805900" elapsed="0.007139"/>
+</kw>
+<kw name="Delete api and return response body" owner="delete_asset_page">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.814886" level="INFO">${header} = {'token': 'kkoaVtokodWhO-FoT6fawvumJpIWrG0Y'}</msg>
+<var>${header}</var>
+<arg>token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.814886" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.814886" level="INFO">Creating Session using : alias=deleteAssetSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>deleteAssetSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.814886" elapsed="0.000000"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.818563" level="INFO">DELETE Request : url=http://localhost:8082/assets/a99c 
+ path_url=/assets/a99c 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'token': 'kkoaVtokodWhO-FoT6fawvumJpIWrG0Y', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2024-12-10T12:03:02.818563" level="INFO">DELETE Response : url=http://localhost:8082/assets/a99c 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body={"status":"success","message":""} 
+ </msg>
+<msg time="2024-12-10T12:03:02.818563" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>deleteAssetSession</arg>
+<arg>/${path}/${asset_id}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.814886" elapsed="0.003677"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()['status']}</arg>
+<arg>${response_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.818563" elapsed="0.000000"/>
+</kw>
+<arg>${login.url}</arg>
+<arg>${asset.path}</arg>
+<arg>${asset.asset_id}</arg>
+<arg>${asset.status}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.813039" elapsed="0.005524"/>
+</kw>
+<kw name="Check get asset that asset has been deleted" owner="delete_asset_page">
+<kw name="Get asset that created asset" owner="get_asset_page">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.825178" level="INFO">${header} = {'token': 'kkoaVtokodWhO-FoT6fawvumJpIWrG0Y'}</msg>
+<var>${header}</var>
+<arg>token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.825178" elapsed="0.000000"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.825178" level="INFO">Creating Session using : alias=GetAssetSession, url=http://localhost:8082, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>GetAssetSession</arg>
+<arg>${url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-10T12:03:02.825178" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-12-10T12:03:02.830709" level="INFO">GET Request : url=http://localhost:8082/assets 
+ path_url=/assets 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'token': 'kkoaVtokodWhO-FoT6fawvumJpIWrG0Y'} 
+ body=None 
+ </msg>
+<msg time="2024-12-10T12:03:02.830709" level="INFO">GET Response : url=http://localhost:8082/assets 
+ status=200, reason= 
+ headers={'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Date': 'Tue, 10 Dec 2024 05:03:02 GMT', 'Keep-Alive': 'timeout=60', 'Connection': 'keep-alive'} 
+ body=[{"assetId":"a001","assetName":"Macbook Pro","assetType":1,"inUse":true},{"assetId":"a002","assetName":"Lenovo B112","assetType":2,"inUse":true},{"assetId":"a003","assetName":"Apple Iphone 11","assetType":3,"inUse":true},{"assetId":"a004","assetName":"Macbook Air","assetType":1,"inUse":true},{"assetId":"a005","assetName":"Xiaomi Mi6","assetType":4,"inUse":true},{"assetId":"a011","assetName":"Aoppee phone","assetType":1,"inUse":true},{"assetId":"a012","assetName":"Aoppee phone","assetType":1,"inUse":true}] 
+ </msg>
+<msg time="2024-12-10T12:03:02.830709" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>GetAssetSession</arg>
+<arg>/${path}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.825178" elapsed="0.005531"/>
+</kw>
+<kw name="Set Global Variable" owner="BuiltIn">
+<msg time="2024-12-10T12:03:02.831576" level="INFO">${get_assets} = &lt;Response [200]&gt;</msg>
+<arg>${get_assets}</arg>
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.831576" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2024-12-10T12:03:02.831576" elapsed="0.000000"/>
+</return>
+<msg time="2024-12-10T12:03:02.832590" level="INFO">${assets} = [{'assetId': 'a001', 'assetName': 'Macbook Pro', 'assetType': 1, 'inUse': True}, {'assetId': 'a002', 'assetName': 'Lenovo B112', 'assetType': 2, 'inUse': True}, {'assetId': 'a003', 'assetName': 'Apple...</msg>
+<var>${assets}</var>
+<arg>${login.url}</arg>
+<arg>${asset.path}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.825178" elapsed="0.007412"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-12-10T12:03:02.833197" level="INFO">${asset_id} = a001</msg>
+<var>${asset_id}</var>
+<arg>${asset}</arg>
+<arg>assetId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.832590" elapsed="0.000607"/>
+</kw>
+<kw name="Should Not Be Equal As Strings" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${unexpected_asset_id}</arg>
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<var name="${asset}">{'assetId': 'a001', 'assetName': 'Macbook Pro', 'assetType': 1, 'inUse': True}</var>
+<status status="PASS" start="2024-12-10T12:03:02.832590" elapsed="0.000607"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-12-10T12:03:02.833197" level="INFO">${asset_id} = a002</msg>
+<var>${asset_id}</var>
+<arg>${asset}</arg>
+<arg>assetId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Strings" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${unexpected_asset_id}</arg>
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<var name="${asset}">{'assetId': 'a002', 'assetName': 'Lenovo B112', 'assetType': 2, 'inUse': True}</var>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-12-10T12:03:02.833197" level="INFO">${asset_id} = a003</msg>
+<var>${asset_id}</var>
+<arg>${asset}</arg>
+<arg>assetId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Strings" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${unexpected_asset_id}</arg>
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<var name="${asset}">{'assetId': 'a003', 'assetName': 'Apple Iphone 11', 'assetType': 3, 'inUse': True}</var>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-12-10T12:03:02.833197" level="INFO">${asset_id} = a004</msg>
+<var>${asset_id}</var>
+<arg>${asset}</arg>
+<arg>assetId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Strings" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${unexpected_asset_id}</arg>
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<var name="${asset}">{'assetId': 'a004', 'assetName': 'Macbook Air', 'assetType': 1, 'inUse': True}</var>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-12-10T12:03:02.833197" level="INFO">${asset_id} = a005</msg>
+<var>${asset_id}</var>
+<arg>${asset}</arg>
+<arg>assetId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Strings" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${unexpected_asset_id}</arg>
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<var name="${asset}">{'assetId': 'a005', 'assetName': 'Xiaomi Mi6', 'assetType': 4, 'inUse': True}</var>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-12-10T12:03:02.833197" level="INFO">${asset_id} = a011</msg>
+<var>${asset_id}</var>
+<arg>${asset}</arg>
+<arg>assetId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Strings" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${unexpected_asset_id}</arg>
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<var name="${asset}">{'assetId': 'a011', 'assetName': 'Aoppee phone', 'assetType': 1, 'inUse': True}</var>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-12-10T12:03:02.833197" level="INFO">${asset_id} = a012</msg>
+<var>${asset_id}</var>
+<arg>${asset}</arg>
+<arg>assetId</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Strings" owner="BuiltIn">
+<arg>${asset_id}</arg>
+<arg>${unexpected_asset_id}</arg>
+<doc>Fails if objects are equal after converting them to strings.</doc>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</kw>
+<var name="${asset}">{'assetId': 'a012', 'assetName': 'Aoppee phone', 'assetType': 1, 'inUse': True}</var>
+<status status="PASS" start="2024-12-10T12:03:02.833197" elapsed="0.000000"/>
+</iter>
+<var>${asset}</var>
+<value>@{assets}</value>
+<status status="PASS" start="2024-12-10T12:03:02.832590" elapsed="0.000607"/>
+</for>
+<arg>${asset.asset_id}</arg>
+<status status="PASS" start="2024-12-10T12:03:02.818563" elapsed="0.014634"/>
+</kw>
+<status status="PASS" start="2024-12-10T12:03:02.805900" elapsed="0.027297"/>
+</test>
+<status status="PASS" start="2024-12-10T12:03:02.346058" elapsed="0.487139"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Testcase">Testcase</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
